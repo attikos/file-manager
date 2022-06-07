@@ -1,4 +1,17 @@
+import up from './modules/up.js'
 import { Writable } from 'stream'
+
+// import path, { dirname } from 'path'
+// import { fileURLToPath } from 'url';
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+
+const commandsMap = {
+    up,
+    '.exit' : () => process.exit()
+}
+
 
 const trim = (buffer) => buffer
     .toString()
@@ -6,7 +19,7 @@ const trim = (buffer) => buffer
     .replace(/[\r\n]*/g, '')
     .replace(/(^[ ]*)|([ ]*$)/g, '')
 
-export const controllerStream = () => {
+export const createControllerStream = () => {
     const stream = new Writable({
         defaultEncoding: 'utf8',
         decodeStrings: true,
@@ -19,8 +32,15 @@ export const controllerStream = () => {
             const lastIndex = args.length - 1;
             args[lastIndex] = args[lastIndex].replace('\n', '')
         }
-        console.log('command: ', command);
-        console.log('args: ', args);
+        // console.log('command: ', command);
+        // console.log('args: ', args);
+
+        if (!commandsMap[command]) {
+            console.log('Command not found!');
+        }
+        else {
+            commandsMap[command](args)
+        }
     }
 
     stream.on('data', (data) => console.log(data.toString()))

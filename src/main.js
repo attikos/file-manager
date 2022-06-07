@@ -1,4 +1,6 @@
-import { controllerStream } from './controllerStream.js'
+import setPath from "./utils/set-path.js"
+import { createControllerStream } from './controllerStream.js'
+import { homedir } from 'os'
 
 const showExitMessage = (username) => {
     process.stdout.write(`\nThank you for using File Manager, ${username}!\n`)
@@ -22,8 +24,6 @@ export const main = () => {
 
     const argsHash = Object.fromEntries(args);
 
-    // console.log('argsHash', argsHash);
-
     const username = argsHash[ argsList.USERNAME ];
 
     // createInterface({
@@ -32,28 +32,16 @@ export const main = () => {
     // }).on('SIGINT', () => process.emit('SIGINT'));
 
     showGreetingMessage(username)
+    // init path
+    setPath(homedir());
 
-    // process.stdin.on('data', d => console.log(d.toString()))
-    process.stdin.pipe(controllerStream())
-
-    // process.openStdin()
-        // .on('keypress', function(chunk, key) {
-        //     console.log('chunk', chunk);
-        //     console.log('key', key);
-
-
-        //     if(key && key.name === "c" && key.ctrl) {
-        //         console.log("bye bye");
-        //         // process.stdout.write(`5Thank you for using File Manager, ${username}!\n`)
-        //         process.exit();
-        //     }
-        // })
-        // .on('data', data => console.log(data.toString()))
-
-    // tty.setRawMode(true);
+    process.stdin.pipe(createControllerStream())
 
     process.on('SIGINT', () => {
-        showExitMessage(username)
         process.exit(1)
+    })
+
+    process.on('exit', () => {
+        showExitMessage(username)
     })
 }
