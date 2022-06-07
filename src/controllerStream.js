@@ -1,4 +1,5 @@
 import up from './modules/up.js'
+import cd from './modules/cd.js'
 import { Writable } from 'stream'
 
 // import path, { dirname } from 'path'
@@ -9,6 +10,7 @@ import { Writable } from 'stream'
 
 const commandsMap = {
     up,
+    cd,
     '.exit' : () => process.exit()
 }
 
@@ -36,10 +38,14 @@ export const createControllerStream = () => {
         // console.log('args: ', args);
 
         if (!commandsMap[command]) {
-            console.log('Command not found!');
+            console.log('Invalid input');
         }
         else {
-            commandsMap[command](args)
+            try {
+                commandsMap[command](args)
+            } catch (error) {
+                console.log('Operation failed:', error.message)
+            }
         }
     }
 
