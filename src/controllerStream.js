@@ -1,5 +1,6 @@
 import up from './modules/up.js'
 import cd from './modules/cd.js'
+import ls from './modules/ls.js'
 import { Writable } from 'stream'
 
 // import path, { dirname } from 'path'
@@ -11,6 +12,7 @@ import { Writable } from 'stream'
 const commandsMap = {
     up,
     cd,
+    ls,
     '.exit' : () => process.exit()
 }
 
@@ -27,22 +29,20 @@ export const createControllerStream = () => {
         decodeStrings: true,
     })
 
-    stream.write = (chunk, _, callback, error) => {
+    stream.write = async (chunk, _, callback, error) => {
         const [command, ...args] = trim(chunk).split(' ');
 
         if (args.length) {
             const lastIndex = args.length - 1;
             args[lastIndex] = args[lastIndex].replace('\n', '')
         }
-        // console.log('command: ', command);
-        // console.log('args: ', args);
 
         if (!commandsMap[command]) {
             console.log('Invalid input');
         }
         else {
             try {
-                commandsMap[command](args)
+                await commandsMap[command](args)
             } catch (error) {
                 console.log('Operation failed:', error.message)
             }

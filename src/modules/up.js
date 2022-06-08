@@ -1,5 +1,5 @@
 import setPath from "../utils/set-path.js"
 
-export default function() {
-    setPath(currentDir, '..')
+export default async function() {
+    return await setPath(currentDir, '..')
 }

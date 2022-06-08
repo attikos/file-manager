@@ -1,28 +1,14 @@
-import path from 'path'
-import fs from 'fs'
-import { homedir } from 'os'
+import resolvePath from './resolve-path.js'
 
-export default function(...pathList) {
+export default async function(...pathList) {
     if (!pathList.length) {
         throw Error('PathName is required!');
     }
 
-    let newPath;
-    if (pathList[0].includes('.')) {
-        newPath = path.resolve(globalThis.currentDir, pathList[0])
+    try {
+        globalThis.currentDir = await resolvePath(...pathList)
+        console.log(`\nYou are currently in ${globalThis.currentDir}\n`)
+    } catch (error) {
+        return false;
     }
-    if (/^~/.test(pathList[0])) {
-        const tmpPath = pathList[0].replace(/^~/g, homedir())
-        newPath = path.resolve(tmpPath)
-    }
-    else {
-        newPath = path.resolve(...pathList)
-    }
-
-    if (!fs.existsSync(newPath)) {
-        throw Error(`Incorrect path ${newPath}`)
-    }
-
-    globalThis.currentDir = newPath
-    console.log(`\nYou are currently in ${globalThis.currentDir}\n`)
 }
