@@ -2,19 +2,17 @@ import up from './modules/up.js'
 import cd from './modules/cd.js'
 import ls from './modules/ls.js'
 import cat from './modules/cat.js'
+import add from './modules/add.js'
+import rm from './modules/rm.js'
 import { Writable } from 'stream'
-
-// import path, { dirname } from 'path'
-// import { fileURLToPath } from 'url';
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
 
 const commandsMap = {
     up,
     cd,
     ls,
     cat,
+    add,
+    rm,
     '.exit' : () => process.exit()
 }
 

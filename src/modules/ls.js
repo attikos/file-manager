@@ -1,4 +1,4 @@
-import fs, { promises as fsAsync } from 'fs'
+import { promises as fsAsync } from 'fs'
 import resolvePath from '../utils/resolve-path.js'
 
 export default async function(pathName) {
