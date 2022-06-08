@@ -5,7 +5,7 @@ import { homedir } from 'os'
 export default async function(...pathList) {
     let newPath;
 
-    if (pathList[0].indexOf('.') !== -1) {
+    if (pathList[0].indexOf('./') !== -1 || pathList[0].indexOf('..') !== -1) {
         newPath = path.resolve(globalThis.currentDir, pathList[0])
     }
     else if (/^~/.test(pathList[0])) {

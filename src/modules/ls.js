@@ -10,7 +10,20 @@ export default async function(pathName) {
         throw error;
     }
 
-    const files = await fsAsync.readdir(resolvedPath);
+    let result;
 
-    console.log(files.join('\n'), '\n');
+    const stats = await fsAsync.stat(resolvedPath);
+
+    if (stats.isDirectory()) {
+        const files = await fsAsync.readdir(resolvedPath);
+        result = files.join('\n') + '\n';
+    }
+    else {
+        result = `
+- file path: ${resolvedPath}
+- size: ${stats.size}b
+`
+    }
+
+    console.log(result);
 }

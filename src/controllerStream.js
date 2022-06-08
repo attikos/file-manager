@@ -1,6 +1,7 @@
 import up from './modules/up.js'
 import cd from './modules/cd.js'
 import ls from './modules/ls.js'
+import cat from './modules/cat.js'
 import { Writable } from 'stream'
 
 // import path, { dirname } from 'path'
@@ -13,6 +14,7 @@ const commandsMap = {
     up,
     cd,
     ls,
+    cat,
     '.exit' : () => process.exit()
 }
 
