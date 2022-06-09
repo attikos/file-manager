@@ -6,7 +6,7 @@ export default async function([fileName]) {
     const sourceFile = path.resolve(globalThis.currentDir, fileName);
 
     if (fs.existsSync(sourceFile)) {
-        throw Error('File exist\n')
+        throw Error(`File exist: ${sourceFile} \n`)
     }
 
     await fs.writeFile(sourceFile, '', (err) => {
