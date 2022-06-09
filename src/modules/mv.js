@@ -29,11 +29,19 @@ const copy = async (sourcePath, targetPath) => {
 }
 
 export default async function([source, target]) {
+    if (!source) {
+        throw Error('Path is missing')
+    }
+
+    if (!target) {
+        throw Error('Target path is missing')
+    }
+
     let sourcePath
     let targetPath = path.resolve(globalThis.currentDir, target)
 
     if (fs.existsSync(targetPath)) {
-        throw Error(`File or dir is exist: ${targetPath}`)
+        throw Error(`File exist: ${targetPath}`)
     }
 
     try {
@@ -47,9 +55,11 @@ export default async function([source, target]) {
     const stats = await fsAsync.stat(sourcePath)
 
     if (stats.isDirectory()) {
-        console.log('Directory successfully copied')
+        await fsAsync.rm(sourcePath, { recursive: true, force: true })
+        console.log('Directory successfully moved')
     }
     else {
-        console.log('File successfully copied')
+        await fsAsync.rm(sourcePath)
+        console.log('File successfully moved')
     }
 }

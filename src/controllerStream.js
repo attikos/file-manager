@@ -3,9 +3,10 @@ import cd from './modules/cd.js'
 import ls from './modules/ls.js'
 import cat from './modules/cat.js'
 import add from './modules/add.js'
-import rm from './modules/rm.js'
-import cp from './modules/cp.js'
 import rn from './modules/rn.js'
+import cp from './modules/cp.js'
+import mv from './modules/mv.js'
+import rm from './modules/rm.js'
 import pwd from './modules/pwd.js'
 import os from './modules/os.js'
 import { Writable } from 'stream'
@@ -16,9 +17,10 @@ const commandsMap = {
     ls,
     cat,
     add,
-    rm,
-    cp,
     rn,
+    cp,
+    mv,
+    rm,
     pwd,
     os,
     '.exit' : () => process.exit()
@@ -56,7 +58,7 @@ export const createControllerStream = () => {
             }
         }
 
-        console.log(`\nYou are currently in ${globalThis.currentDir}\n`)
+        console.log(`You are currently in ${globalThis.currentDir}`)
     }
 
     stream.on('data', (data) => console.log(data.toString()))
