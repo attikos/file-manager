@@ -1,6 +1,6 @@
 import path from 'path'
 import resolvePath from '../utils/resolve-path.js'
-import { createGunzip } from 'zlib'
+import { createBrotliDecompress } from 'zlib'
 import { pipeline } from 'stream/promises'
 import { existsSync, createReadStream, createWriteStream } from 'fs'
 
@@ -25,7 +25,7 @@ export default async function([fileName, target]) {
         throw error;
     }
 
-    const unzipStream = createGunzip();
+    const unzipStream = createBrotliDecompress();
     const sourceStream = createReadStream(sourceFile);
     const targetStream = createWriteStream(targetFile)
 
