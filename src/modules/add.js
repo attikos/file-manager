@@ -2,6 +2,9 @@ import path from 'path'
 import fs from 'fs'
 
 export default async function([fileName]) {
+    if (!fileName) {
+        throw Error('File name is missing')
+    }
 
     const sourceFile = path.resolve(globalThis.currentDir, fileName);
 

@@ -1,9 +1,10 @@
 import { promises as fsAsync } from 'fs'
 import resolvePath from '../utils/resolve-path.js'
 
-export default async function(pathName) {
-    const path = pathName[0] || '.';
+export default async function([pathName]) {
+    const path = pathName || '.';
     let resolvedPath;
+
     try {
         resolvedPath = await resolvePath(path);
     } catch (error) {

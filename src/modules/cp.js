@@ -29,6 +29,14 @@ const copy = async (sourcePath, targetPath) => {
 }
 
 export default async function([source, target]) {
+    if (!source) {
+        throw Error('First argument is missing')
+    }
+
+    if (!target) {
+        throw Error('Second argument is missing')
+    }
+
     let sourcePath
     let targetPath = path.resolve(globalThis.currentDir, target)
 

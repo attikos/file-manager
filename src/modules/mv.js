@@ -30,11 +30,11 @@ const copy = async (sourcePath, targetPath) => {
 
 export default async function([source, target]) {
     if (!source) {
-        throw Error('Path is missing')
+        throw Error('First argument is missing')
     }
 
     if (!target) {
-        throw Error('Target path is missing')
+        throw Error('Second argument is missing')
     }
 
     let sourcePath

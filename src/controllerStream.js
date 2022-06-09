@@ -9,6 +9,7 @@ import mv from './modules/mv.js'
 import rm from './modules/rm.js'
 import pwd from './modules/pwd.js'
 import os from './modules/os.js'
+import hash from './modules/hash.js'
 import { Writable } from 'stream'
 
 const commandsMap = {
@@ -23,6 +24,7 @@ const commandsMap = {
     rm,
     pwd,
     os,
+    hash,
     '.exit' : () => process.exit()
 }
 

@@ -1,5 +1,6 @@
 import { promises as fsAsync } from 'fs'
 import resolvePath from '../utils/resolve-path.js'
+import crypto from 'crypto'
 
 export default async function([fileName]) {
     if (!fileName) {
@@ -16,5 +17,7 @@ export default async function([fileName]) {
 
     const file = await fsAsync.readFile(sourceFile, 'utf8')
 
-    console.log('\n', file, '\n')
+    const res = crypto.createHash('sha256').update(file).digest('hex')
+
+    console.log(res)
 }
