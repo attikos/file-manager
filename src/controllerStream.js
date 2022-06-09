@@ -10,6 +10,8 @@ import rm from './modules/rm.js'
 import pwd from './modules/pwd.js'
 import os from './modules/os.js'
 import hash from './modules/hash.js'
+import compress from './modules/compress.js'
+import decompress from './modules/decompress.js'
 import { Writable } from 'stream'
 
 const commandsMap = {
@@ -25,6 +27,8 @@ const commandsMap = {
     pwd,
     os,
     hash,
+    compress,
+    decompress,
     '.exit' : () => process.exit()
 }
 
