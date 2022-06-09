@@ -3,7 +3,7 @@ import { createControllerStream } from './controllerStream.js'
 import { homedir } from 'os'
 
 const showExitMessage = (username) => {
-    process.stdout.write(`\nThank you for using File Manager, ${username}!\n`)
+    process.stdout.write(`Thank you for using File Manager${ username ? ', ' + username : ''}!\n`)
 }
 
 const showGreetingMessage = (username) => {

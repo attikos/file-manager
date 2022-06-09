@@ -4,6 +4,7 @@ import ls from './modules/ls.js'
 import cat from './modules/cat.js'
 import add from './modules/add.js'
 import rm from './modules/rm.js'
+import cp from './modules/cp.js'
 import rn from './modules/rn.js'
 import pwd from './modules/pwd.js'
 import os from './modules/os.js'
@@ -16,6 +17,7 @@ const commandsMap = {
     cat,
     add,
     rm,
+    cp,
     rn,
     pwd,
     os,
@@ -53,6 +55,8 @@ export const createControllerStream = () => {
                 console.log('Operation failed:', error.message)
             }
         }
+
+        console.log(`\nYou are currently in ${globalThis.currentDir}\n`)
     }
 
     stream.on('data', (data) => console.log(data.toString()))

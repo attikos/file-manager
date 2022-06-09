@@ -7,7 +7,6 @@ export default async function(...pathList) {
 
     try {
         globalThis.currentDir = await resolvePath(...pathList)
-        console.log(`\nYou are currently in ${globalThis.currentDir}\n`)
     } catch (error) {
         return false;
     }

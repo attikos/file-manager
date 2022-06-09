@@ -8,7 +8,7 @@ export default async function([oldFile, newFile]) {
     let newFilePath = path.resolve(globalThis.currentDir, newFile);
 
     if (fs.existsSync(newFilePath)) {
-        throw Error(`File exist: ${newFilePath} \n`)
+        throw Error(`File exist: ${newFilePath}`)
     }
 
     try {
@@ -19,5 +19,5 @@ export default async function([oldFile, newFile]) {
 
     await fsAsync.rename(oldFilePath, newFilePath)
 
-    console.log('File successfully renamed\n')
+    console.log('File successfully renamed')
 }
