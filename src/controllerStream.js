@@ -6,6 +6,7 @@ import add from './modules/add.js'
 import rm from './modules/rm.js'
 import rn from './modules/rn.js'
 import pwd from './modules/pwd.js'
+import os from './modules/os.js'
 import { Writable } from 'stream'
 
 const commandsMap = {
@@ -17,6 +18,7 @@ const commandsMap = {
     rm,
     rn,
     pwd,
+    os,
     '.exit' : () => process.exit()
 }
 
