@@ -6,7 +6,7 @@ export default async function([fileName]) {
         throw Error('File name is missing')
     }
 
-    const sourceFile = path.resolve(globalThis.currentDir, fileName);
+    const sourceFile = path.resolve(globalThis.currentDir, fileName)
 
     if (fs.existsSync(sourceFile)) {
         throw Error(`File exist: ${sourceFile}`)

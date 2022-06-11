@@ -3,7 +3,7 @@ import { promises as fsAsync } from 'fs'
 import { homedir } from 'os'
 
 export default async function(...pathList) {
-    let newPath;
+    let newPath
 
     if (pathList[0].indexOf('./') !== -1 || pathList[0].indexOf('..') !== -1) {
         newPath = path.resolve(globalThis.currentDir, pathList[0])
@@ -26,5 +26,5 @@ export default async function(...pathList) {
         throw Error(`Incorrect path ${newPath}`)
     }
 
-    return newPath;
+    return newPath
 }

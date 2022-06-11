@@ -46,15 +46,15 @@ export const createControllerStream = () => {
     })
 
     stream.write = async (chunk, _, callback, error) => {
-        const [command, ...args] = trim(chunk).split(' ');
+        const [command, ...args] = trim(chunk).split(' ')
 
         if (args.length) {
-            const lastIndex = args.length - 1;
+            const lastIndex = args.length - 1
             args[lastIndex] = args[lastIndex].replace('\n', '')
         }
 
         if (!commandsMap[command]) {
-            console.log('Invalid input');
+            console.log('Invalid input')
         }
         else {
             try {

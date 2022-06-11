@@ -7,12 +7,12 @@ export default async function([fileName]) {
         throw Error('File name is missing')
     }
 
-    let sourceFile;
+    let sourceFile
 
     try {
-        sourceFile = await resolvePath(fileName);
+        sourceFile = await resolvePath(fileName)
     } catch (error) {
-        throw error;
+        throw error
     }
 
     const file = await fsAsync.readFile(sourceFile, 'utf8')

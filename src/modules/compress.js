@@ -18,18 +18,18 @@ export default async function([fileName, target]) {
         throw Error(`File is exist: ${targetFile}`)
     }
 
-    let sourceFile;
+    let sourceFile
     try {
-        sourceFile = await resolvePath(fileName);
+        sourceFile = await resolvePath(fileName)
     } catch (error) {
-        throw error;
+        throw error
     }
 
-    const brotli = createBrotliCompress();
-    const sourceStream = createReadStream(sourceFile);
+    const brotli = createBrotliCompress()
+    const sourceStream = createReadStream(sourceFile)
     const targetStream = createWriteStream(targetFile)
 
-    await pipeline(sourceStream, brotli, targetStream);
+    await pipeline(sourceStream, brotli, targetStream)
 
     console.log('File zipped successfully!')
 }

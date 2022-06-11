@@ -4,7 +4,7 @@ import { promises as fsAsync } from 'fs'
 import resolvePath from '../utils/resolve-path.js'
 
 const copy = async (sourcePath, targetPath) => {
-    let sourceFileList;
+    let sourceFileList
     const stats = await fsAsync.stat(sourcePath)
 
     if (stats.isDirectory()) {

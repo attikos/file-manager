@@ -20,20 +20,16 @@ export const main = () => {
     args = args.map(arg => {
         const [key, value] = arg.split('=')
         return [key, value]
-    });
+    })
 
-    const argsHash = Object.fromEntries(args);
+    const argsHash = Object.fromEntries(args)
 
-    const username = argsHash[ argsList.USERNAME ];
-
-    // createInterface({
-    //     input: process.stdin,
-    //     output: process.stdout
-    // }).on('SIGINT', () => process.emit('SIGINT'));
+    const username = argsHash[ argsList.USERNAME ]
 
     showGreetingMessage(username)
+
     // init path
-    setPath(homedir());
+    setPath(homedir())
 
     process.stdin.pipe(createControllerStream())
 

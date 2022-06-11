@@ -2,22 +2,22 @@ import { promises as fsAsync } from 'fs'
 import resolvePath from '../utils/resolve-path.js'
 
 export default async function([pathName]) {
-    const path = pathName || '.';
-    let resolvedPath;
+    const path = pathName || '.'
+    let resolvedPath
 
     try {
-        resolvedPath = await resolvePath(path);
+        resolvedPath = await resolvePath(path)
     } catch (error) {
-        throw error;
+        throw error
     }
 
-    let result;
+    let result
 
-    const stats = await fsAsync.stat(resolvedPath);
+    const stats = await fsAsync.stat(resolvedPath)
 
     if (stats.isDirectory()) {
-        const files = await fsAsync.readdir(resolvedPath);
-        result = files.join('\n') + '\n';
+        const files = await fsAsync.readdir(resolvedPath)
+        result = files.join('\n') + '\n'
     }
     else {
         result = `
@@ -26,5 +26,5 @@ export default async function([pathName]) {
 `
     }
 
-    console.log(result);
+    console.log(result)
 }

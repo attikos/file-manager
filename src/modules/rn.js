@@ -4,17 +4,17 @@ import { promises as fsAsync } from 'fs'
 import resolvePath from '../utils/resolve-path.js'
 
 export default async function([oldFile, newFile]) {
-    let oldFilePath;
-    let newFilePath = path.resolve(globalThis.currentDir, newFile);
+    let oldFilePath
+    let newFilePath = path.resolve(globalThis.currentDir, newFile)
 
     if (fs.existsSync(newFilePath)) {
         throw Error(`File exist: ${newFilePath}`)
     }
 
     try {
-        oldFilePath = await resolvePath(oldFile);
+        oldFilePath = await resolvePath(oldFile)
     } catch (error) {
-        throw error;
+        throw error
     }
 
     await fsAsync.rename(oldFilePath, newFilePath)
