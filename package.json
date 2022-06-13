@@ -1,0 +1,21 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "Nodejs CLI file manager",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/attikos/file-manager.git"
+  },
+  "author": "Bylkov Maksim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/attikos/file-manager/issues"
+  },
+  "homepage": "https://github.com/attikos/file-manager#readme"
+}
